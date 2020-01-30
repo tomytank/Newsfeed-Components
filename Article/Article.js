@@ -85,6 +85,42 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Making Lists Reactive',
+    date: 'Dec 17th, 2019',
+    firstParagraph: `Cupcake ipsum dolor sit amet fruitcake oat cake chocolate cake apple pie. Marzipan tart jelly-o pastry. Croissant
+     tart chocolate bar I love chupa chups caramels chocolate tootsie roll chocolate bar. Liquorice macaroon jujubes powder I love jujubes 
+     cheesecake. Sweet jujubes powder tiramisu icing chocolate cake chocolate bar. Soufflé candy canes jelly beans I love jelly beans tart. 
+     Jelly-o fruitcake jelly-o jelly beans chocolate bar wafer powder. Toffee tootsie roll sweet roll lemon drops chocolate tootsie roll 
+     lemon drops. Pudding icing marzipan cake caramels sugar plum I love I love. Donut marshmallow biscuit chupa chups sweet roll.`,
+
+    secondParagraph: `Cupcake muffin pastry I love pie. Soufflé gingerbread soufflé chocolate caramels tart. Chocolate cake dessert bear
+     claw fruitcake I love cotton candy. Sesame snaps candy canes muffin tiramisu. Jelly chupa chups brownie biscuit I love soufflé sesame
+      snaps wafer halvah. I love ice cream croissant gummies. Gingerbread sweet pie wafer cookie cotton candy. Muffin dragée sugar plum 
+      gingerbread brownie.`,
+
+    thirdParagraph: `Caramels I love jelly beans tiramisu cotton candy donut jelly beans. Marzipan lollipop topping icing I love cookie 
+    cupcake caramels bonbon. Carrot cake dragée oat cake liquorice candy canes. Cheesecake toffee I love bear claw icing. Icing I love 
+    cake chocolate cake soufflé donut carrot cake chocolate. Halvah cake lollipop apple pie chocolate bar powder bear claw sweet roll 
+    chocolate cake.`
+  },
+  {
+    title: 'Using react for the next Gen Web!',
+    date: 'January 7th, 2020',
+    firstParagraph: `The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. 
+    Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his 
+    brother's keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who 
+    would attempt to poison and destroy My brothers. And you will know My name is the Lord when I lay My vengeance upon thee.`,
+
+    secondParagraph: `Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it?
+     Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you 
+     put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here 
+     shopping for an infant named Jeb.`,
+
+    thirdParagraph: `Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in 
+    American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American 
+    crime. Like they're actually proud of that shit. `
   }
 ];
 
@@ -107,8 +143,68 @@ const data = [
 
   Step 3: return the entire component.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  Step 4: Map over the data, creating a component for each object and add each component to the DOM as children of the 'articles' div.
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+
+function createComponent(object){
+  //console.log(object);
+  //define new Elements
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const buttonOpen = document.createElement('span');
+  const buttonClose = document.createElement('span');
+
+  //append Elements
+  article.append(title);
+  article.append(date);
+  article.append(para1);
+  article.append(para2);
+  article.append(para3);
+  article.append(buttonOpen);
+
+  //attach Classes
+  article.classList.add('article');
+  date.classList.add('date');
+  buttonOpen.classList.add('expandButton');
+  buttonClose.classList.add('expandButton', 'buttonHide');
+  
+  //set text content
+  title.textContent = object.title;
+  date.textContent = object.date;
+  para1.textContent = object.firstParagraph;
+  para2.textContent = object.secondParagraph;
+  para3.textContent = object.thirdParagraph;
+  buttonOpen.textContent = '\u02C5';
+  buttonClose.textContent = '\u02C4'
+
+  //add event listeners
+  buttonOpen.addEventListener('click', event => {
+    article.classList.toggle('article-open');
+    //buttonOpen.classList.toggle('buttonHide');
+    //buttonClose.classList.toggle('buttonHide')
+  });
+  // buttonClose.addEventListener('click' => {
+  //   article.classList.toggle('article-open');
+  //   buttonOpen.classList.toggle('buttonHide');
+  //   buttonClose.classList.toggle('buttonHide')
+  // })
+
+  return article;
+
+}
+
+const articles = document.querySelector('.articles');
+
+data.forEach(data => {
+  //console.log(data);
+  articles.append(createComponent(data));
+});
+
