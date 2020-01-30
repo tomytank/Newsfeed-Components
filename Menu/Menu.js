@@ -35,22 +35,25 @@ let menuItems = [
 */
 
 
-function creatMenu(array) {
+function createMenu(array) {
 
   //create elements
   const menu = document.createElement('div');
   const list = document.createElement('ul');
-  const listItem = document.createElement('li');
 
-  const listItems = array.forEach(element => {
-    listItem.append(element);
-  })
+  menu.append(list);
+  menu.classList.add('menu');
+  array.forEach(element => {
+    // console.log("The element is : ",element);
+    const listItem = document.createElement('li');
+    listItem.textContent = element;
+    list.append(listItem);
+  });
+return menu;
+};
 
-  list.append(listItems);
-  
-console.log(list);
 
-
-
-
-}
+const menuButton = document.querySelector('.menu-button');
+//console.log("menuButton", menuButton);
+//console.log("menuItems", menuItems);
+menuButton.append(createMenu(menuItems));
