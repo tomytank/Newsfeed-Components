@@ -115,7 +115,7 @@ const data = [
 
 
 function createComponent(object){
-  console.log(object);
+  //console.log(object);
   //define new Elements
   const article = document.createElement('div');
   const title = document.createElement('h2');
@@ -124,32 +124,35 @@ function createComponent(object){
   const para2 = document.createElement('p');
   const para3 = document.createElement('p');
   const buttonOpen = document.createElement('span');
+  const buttonClose = document.createElement('span');
 
   //append Elements
   article.append(title);
-  title.append(date);
-  date.append(para1);
-  para1.append(para2);
-  para2.append(para3);
-  para3.append(buttonOpen);
+  article.append(date);
+  article.append(para1);
+  article.append(para2);
+  article.append(para3);
+  article.append(buttonOpen);
 
   //attach Classes
   article.classList.add('article');
   date.classList.add('date');
   buttonOpen.classList.add('expandButton');
+  buttonClose.classList.add('expandButton');
   
   //set text content
   title.textContent = object.title;
-  console.log(title);
+  //console.log(title);
   date.textContent = object.date;
-  console.log(date);
+  //console.log(date);
   para1.textContent = object.firstParagraph;
-  console.log(para1);
+  //console.log(para1);
   para2.textContent = object.secondParagraph;
-  console.log(para2);
+  //console.log(para2);
   para3.textContent = object.thirdParagraph;
-  console.log(para3);
-  buttonOpen.textContent = '\u25b2';
+  //console.log(para3);
+  buttonOpen.textContent = '\u02C5';
+  buttonClose.textContent = '\u02C4'
   //buttonOpen.textContent = '\u02C5';
 
   //add event listeners
@@ -165,7 +168,7 @@ function createComponent(object){
 const articles = document.querySelector('.articles');
 
 data.forEach(data => {
-  console.log(data);
+  //console.log(data);
   articles.append(createComponent(data));
 });
 

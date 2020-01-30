@@ -55,6 +55,9 @@
   transform: translate(-50%);
   background-color: white;
 }
+.article .buttonHide {
+  display: none;
+}
 .article-open {
   height: 400px;
 }
